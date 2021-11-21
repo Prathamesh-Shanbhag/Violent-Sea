@@ -25,8 +25,8 @@ const waterGeometry = new THREE.PlaneGeometry(2, 2, 128, 128);
 
 // Debug Object
 const debugObject = {};
-debugObject.depthColor = '#0000ff';
-debugObject.surfaceColor = '#8888ff';
+debugObject.depthColor = '#186691';
+debugObject.surfaceColor = '#9bd8ff';
 // Material
 const waterMaterial = new THREE.ShaderMaterial({
   vertexShader: waterVertexShader,
@@ -41,8 +41,8 @@ const waterMaterial = new THREE.ShaderMaterial({
     uDepthColor: { value: new THREE.Color(debugObject.depthColor) },
     uSurfaceColor: { value: new THREE.Color(debugObject.surfaceColor) },
     // Elevation Color Control
-    uColorOffset: { value: 0.25 },
-    uColorMultiplier: { value: 2 },
+    uColorOffset: { value: 0.08 },
+    uColorMultiplier: { value: 5 },
   },
 });
 

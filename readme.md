@@ -5,7 +5,7 @@ TO Run Project Locally follow:
 ## Setup
 
 Download [Node.js](https://nodejs.org/en/download/).
-Run this following commands:
+Run these following commands:
 
 ```bash
 # Install dependencies (only the first time)

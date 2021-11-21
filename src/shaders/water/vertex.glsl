@@ -7,7 +7,7 @@ uniform vec2 uBigWavesFrequency;
 varying float vElevation;
 
 
-// Classic Perlin 3D Noise 
+// Classic Perlin 3D Noise
 
 vec4 permute(vec4 x)
 {

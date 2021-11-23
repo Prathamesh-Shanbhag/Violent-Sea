@@ -1,14 +1,22 @@
-
+// Animation
 uniform float uTime; 
+// Big Wave
 uniform float uBigWavesSpeed; 
 uniform float uBigWavesElevation; 
 uniform vec2 uBigWavesFrequency; 
+// Small Wave
+uniform float uSmallWavesElevation;
+uniform float uSmallWavesFrequency;
+uniform float uSmallWavesSpeed;
+uniform float uSmallIterations;
+// Varying Elevation for Changing Color according to Elevation
 
 varying float vElevation;
 
 
-// Classic Perlin 3D Noise
-
+// Classic Perlin 3D Noise 
+// by Stefan Gustavson
+//
 vec4 permute(vec4 x)
 {
     return mod(((x*34.0)+1.0)*x, 289.0);
@@ -99,8 +107,12 @@ void main(){
  vec4 modelPosition = modelMatrix * vec4(position, 1.0);
 float elevation = sin(modelPosition.x * uBigWavesFrequency.x + uTime * uBigWavesSpeed) * sin(modelPosition.z * uBigWavesFrequency.y + uTime* uBigWavesSpeed) * uBigWavesElevation;
 
-elevation += cnoise(vec3(modelPosition.xz * 10.0,uTime * 0.2 )) * 0.15;
+for(float i = 1.0;i<= uSmallIterations;i++){
+elevation -= abs(cnoise(vec3(modelPosition.xz* uSmallWavesFrequency * i,uTime * uSmallWavesSpeed )) *uSmallWavesElevation/i);
 
+// Cool Effect (Extra Jittery more Violent Waves)👇👇👇
+// elevation -= abs(cnoise(vec3(modelPosition.xz* 3.0 * i,uTime * 0.2 )) * 0.15);
+}
  modelPosition.y += elevation;
 
  vec4 viewPosition = viewMatrix * modelPosition;

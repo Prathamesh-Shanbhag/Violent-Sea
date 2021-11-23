@@ -21,12 +21,16 @@ const scene = new THREE.Scene();
  * Water
  */
 // Geometry
+// For Desktop
+// const waterGeometry = new THREE.PlaneGeometry(2, 2, 512, 512);
+
+// For Phone Less Subdivisions
 const waterGeometry = new THREE.PlaneGeometry(2, 2, 128, 128);
 
 // Debug Object
 const debugObject = {};
 debugObject.depthColor = '#186691';
-debugObject.surfaceColor = '#9bd8ff';
+debugObject.surfaceColor = '#9bd8f2';
 // Material
 const waterMaterial = new THREE.ShaderMaterial({
   vertexShader: waterVertexShader,
@@ -43,6 +47,11 @@ const waterMaterial = new THREE.ShaderMaterial({
     // Elevation Color Control
     uColorOffset: { value: 0.08 },
     uColorMultiplier: { value: 5 },
+    // Small Wave Uniforms
+    uSmallWavesElevation: { value: 0.15 },
+    uSmallWavesFrequency: { value: 3.0 },
+    uSmallWavesSpeed: { value: 0.2 },
+    uSmallIterations: { value: 4.0 },
   },
 });
 
@@ -103,6 +112,33 @@ gui
   .max(10)
   .step(0.001)
   .name('uColorMultiplier');
+
+//   Small Wave Control Parameters
+
+gui
+  .add(waterMaterial.uniforms.uSmallWavesElevation, 'value')
+  .min(0)
+  .max(1)
+  .step(0.001)
+  .name('uSmallWavesElevation');
+gui
+  .add(waterMaterial.uniforms.uSmallWavesFrequency, 'value')
+  .min(0)
+  .max(30)
+  .step(0.001)
+  .name('uSmallWavesFrequency');
+gui
+  .add(waterMaterial.uniforms.uSmallIterations, 'value')
+  .min(0)
+  .max(4)
+  .step(1)
+  .name('uSmallIterations');
+gui
+  .add(waterMaterial.uniforms.uSmallWavesSpeed, 'value')
+  .min(0)
+  .max(4)
+  .step(0.001)
+  .name('uSmallWavesSpeed');
 
 // Mesh
 const water = new THREE.Mesh(waterGeometry, waterMaterial);

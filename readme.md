@@ -1,5 +1,13 @@
 # Violent Sea
 
+ALL WEBSITE VERSIONS:
+violent-sea.vercel.app
+violent-sea-chaos.vercel.app
+calm-sea.vercel.app
+custom-sea.vercel.app
+
+
+
 TO Run Project Locally follow:
 
 ## Setup
